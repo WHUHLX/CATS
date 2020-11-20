@@ -18,33 +18,36 @@ tqdm
 
 ### Data preparation
 
-- Download the test data for  [BSDS500 dataset and the NYUDv2 dataset](https://drive.google.com/file/d/1AqD3q-xeTD_HNh4wzDVvU3rXTAF9qRu_/view?usp=sharing).
-- The training data will be updated soon.
+- Download the  [BSDS500](http://vcl.ucsd.edu/hed/HED-BSDS.tar) and the [NYUDv2](http://vcl.ucsd.edu/hed/nyu/) provided by [HED](https://github.com/s9xie/hed)
 - Place the images to "./data/.
-- The default testing data is BSDS500. For getting the inference results of NYUDv2 dataset, one can change the 8th line in configs/__init__.py as follows.
-
-```python
-class Config(object):
-    def __init__(self):
-        self.data = "nyud"
-```
-
-The structure of the data folder should be
+- The structure of the data folder should be
 
 ```shell
 ./data
-   bsds/test/*
-   bsds/train/*
+   bsds/test/*.jpg
+   bsds/train/aug_data*/*.jpg
+   bsds/train/aug_gt*/*.png
    bsds/test.lst
    bsds/train.lst
    ------------------------
-   nyud/test/*
-   nyud/train/*
+   nyud/test/Images/*.png
+   nyud/train/Images/*/*.png
+   nyud/train/GT/*/*.png
    nyud/test.lst
    nyud/train.lst
 ```
 
 #### 
+
+- For NYUDv2 dataset, the following command can be run for data augmentation
+
+```python
+python ./data/aug.py
+```
+
+ 
+
+
 
 ### Pretrained Models
 
@@ -60,11 +63,19 @@ The structure of the data folder should be
 python main.py --mode train
 ```
 
-The training data will be updated soon.
-
 
 
 ### Testing
+
+- The default testing data is BSDS500. For the inference results of NYUDv2 dataset, one can change the 8th line in configs/__init__.py as follows.
+
+```python
+class Config(object):
+    def __init__(self):
+        self.data = "nyud"
+```
+
+
 
 ```shell
 python main.py --mode test
