@@ -115,7 +115,7 @@ More results can be downloaded from links below.
 
 
 
-### Acknowledgment
+## Acknowledgment
 
 We acknowledge the effort from the authors of HED, RCF and BDCN on edge detection. Their researches laid the foundation for this work. We thank [meteorshowers](https://github.com/meteorshowers/RCF-pytorch) as this code is based on  the reproduced RCF of pytorch version by [meteorshowers](https://github.com/meteorshowers/RCF-pytorch).
 
