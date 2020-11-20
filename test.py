@@ -10,7 +10,7 @@ import numpy as np
 from tqdm import tqdm
 import cv2
 
-def test(model, test_loader, save_dir):
+def test(cfg, model, test_loader, save_dir):
     model.eval()
     dl = tqdm(test_loader)
     if not isdir(save_dir):
@@ -19,14 +19,15 @@ def test(model, test_loader, save_dir):
         dl.set_description("Single-scale test")
         image = image.cuda()
         _, _, H, W = image.shape
-        results = model(image)
-        result = torch.squeeze(results[-1].detach()).cpu().numpy()
-        results_all = torch.zeros((len(results), 1, H, W))
-        for i in range(len(results)):
-            results_all[i, 0, :, :] = results[i]
         filename = pth[0]
-        # result = (result - result.min()) / (result.max() - result.min())
-        torchvision.utils.save_image((1-results_all), join(save_dir, "%s.jpg" % filename))
+        results = model(image)
+        if cfg.side_edge:
+            results_all = torch.zeros((len(results), 1, H, W))
+            for i in range(len(results)):
+                results_all[i, 0, :, :] = results[i]
+            torchvision.utils.save_image((1-results_all), join(save_dir, "%s.jpg" % filename))
+
+        result = torch.squeeze(results[-1].detach()).cpu().numpy()
         result = Image.fromarray(((1 - result) * 255).astype(np.uint8))
         result.save(join(save_dir, "%s.png" % filename))
 

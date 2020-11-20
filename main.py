@@ -41,12 +41,9 @@ def main():
     # model
     model = Network(cfg)
     print('=> Load model')
-    if cfg.gpu:
-        model.cuda()
-        print('=> Cuda used')
-    else:
-        model.cpu()
-        print("=> CPU used")
+
+    model.cuda()
+    print('=> Cuda used')
 
 
     test_dataset = MyDataLoader(root=cfg.dataset, split="test")
@@ -58,7 +55,7 @@ def main():
         assert isfile(cfg.resume), "No checkpoint is found at '{}'".format(cfg.resume)
 
         model.load_checkpoint()
-        test(model, test_loader, save_dir = join(TMP_DIR, "test", "sing_scale_test"))
+        test(cfg, model, test_loader, save_dir = join(TMP_DIR, "test", "sing_scale_test"))
 
         if cfg.multi_aug:
             multiscale_test(model, test_loader, save_dir = join(TMP_DIR, "test", "multi_scale_test"))
@@ -92,7 +89,7 @@ def main():
                 train_loader, model, optim, scheduler, epoch,
                 save_dir = join(TMP_DIR, "train", "epoch-%d-training-record" % epoch))
 
-            test(model, test_loader, save_dir = join(TMP_DIR, "train", "epoch-%d-testing-record-view" % epoch))
+            test(cfg, model, test_loader, save_dir = join(TMP_DIR, "train", "epoch-%d-testing-record-view" % epoch))
 
             log.flush()
 

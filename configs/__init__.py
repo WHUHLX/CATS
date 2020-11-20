@@ -9,12 +9,13 @@ class Config(object):
         # ============== training
         self.resume = "./pretrained/{}.pth".format(self.data)
         self.msg_iter = 500
-        self.gpu = '1'
+        self.gpu = '0'
         self.save_pth = join("./output", self.data)
         self.pretrained = "./pretrained/vgg16.pth"
 
         # ============== testing
-        self.multi_aug = False
+        self.multi_aug = False # Produce the multi-scale results
+        self.side_edge = False # Output the side edges
 
         # ================ dataset
         self.dataset = "./data/{}".format(self.data)
