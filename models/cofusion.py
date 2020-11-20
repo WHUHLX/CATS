@@ -18,10 +18,14 @@ class CoFusion(nn.Module):
             stride=1, padding=1)
         self.relu = nn.ReLU()
 
+        self.norm_layer1 = nn.GroupNorm(4, 64)
+        self.norm_layer2 = nn.GroupNorm(4, 64)
+
+
     def forward(self, x):
         fusecat = torch.cat(x, dim=1)
-        attn = self.relu(self.conv1(fusecat))
-        attn = self.relu(self.conv2(attn))
+        attn = self.relu(self.norm_layer1(self.conv1(fusecat)))
+        attn = self.relu(self.norm_layer2(self.conv2(attn)))
         attn = F.softmax(self.conv3(attn), dim=1)
         
 

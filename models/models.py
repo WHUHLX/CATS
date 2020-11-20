@@ -8,8 +8,7 @@ import torchvision.models as models
 import numpy as np
 import torch.nn.functional as F
 from os.path import isfile
-from .cofusion_gn import CoFusion
-# from .cofusion import CoFusion
+from .cofusion import CoFusion
 
 
 class Network(nn.Module):
