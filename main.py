@@ -61,7 +61,7 @@ def main():
             multiscale_test(model, test_loader, save_dir = join(TMP_DIR, "test", "multi_scale_test"))
 
     else:
-        train_dataset = MyDataLoader(root=cfg.dataset, split="train", transform=True)
+        train_dataset = MyDataLoader(root=cfg.dataset, split="train", transform=cfg.aug)
 
         train_loader = DataLoader(train_dataset, batch_size=cfg.batch_size,
                             num_workers=1, drop_last=True,shuffle=True)
