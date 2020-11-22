@@ -21,7 +21,7 @@ class MyDataLoader(data.Dataset):
     """
     Dataloader
     """
-    def __init__(self, root='./Data/NYUD', split='train', transform=False):
+    def __init__(self, root='./Data/NYUD', split='train', transform=True):
         self.root = root
         self.split = split
         self.transform = transform
