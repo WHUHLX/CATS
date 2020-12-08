@@ -12,7 +12,7 @@ class Config(object):
         self.gpu = '0'
         self.save_pth = join("./output", self.data)
         self.pretrained = "./pretrained/vgg16.pth"
-        self.aug = False
+        self.aug = True
 
         # ============== testing
         self.multi_aug = False # Produce the multi-scale results
