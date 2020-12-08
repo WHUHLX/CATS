@@ -37,7 +37,6 @@ if not isdir(TMP_DIR):
     os.makedirs(TMP_DIR)
 
 def main():
-    torch.manual_seed(2020)
     # model
     model = Network(cfg)
     print('=> Load model')
