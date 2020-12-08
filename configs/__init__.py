@@ -8,7 +8,7 @@ class Config(object):
         self.data = "bsds"
         # ============== training
         self.resume = "./pretrained/{}.pth".format(self.data)
-        self.msg_iter = 500
+        self.msg_iter = 1000
         self.gpu = '0'
         self.save_pth = join("./output", self.data)
         self.pretrained = "./pretrained/vgg16.pth"
