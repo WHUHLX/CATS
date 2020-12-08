@@ -59,6 +59,8 @@ python ./data/aug.py
 
 ### Training
 
+- Download the pre-trained [vgg16](https://drive.google.com/file/d/1SZcAzaU-Cys4GOIdIROfwPcDBBF7DCK7/view?usp=sharing) model, and put it to "./pretrained" folder.
+
 ```shell
 python main.py --mode train
 ```
@@ -82,6 +84,20 @@ python main.py --mode test
 ```
 
 The output results will be saved to ./output/$dataset_name/single_scale_test/
+
+
+
+
+
+### Evaluation
+
+- The evaluation codes are provided in "./eval", which comes from [Structured Edge Detection Toolbox](https://github.com/pdollar/edges) and [mayorx](https://github.com/mayorx/rcf-edge-detection)
+- For evaluation, one needs to put the "png2mat.py" to the folder contain test results, and run the following command to change png images to testing format.
+```shell
+python png2mat.py
+```
+
+
 
 
 

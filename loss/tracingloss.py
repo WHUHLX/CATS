@@ -72,7 +72,7 @@ def tracingloss(prediction, label, tex_factor=0., bdr_factor=0., balanced_w=1.1)
                 prediction.float(),label.float(), weight=mask, reduce=False))
     label_w = (label != 0).float()
     #print('tex')
-    textcost = textureloss(prediction.float(),label_w.float(), mask_radius=4)
-    bdrcost = bdrloss(prediction.float(),label_w.float(),radius=4)
+    textcost = textureloss(prediction.float(),label_w.float(), mask_radius=2)
+    bdrcost = bdrloss(prediction.float(),label_w.float(),radius=2)
 
     return cost + bdr_factor*bdrcost + tex_factor*textcost

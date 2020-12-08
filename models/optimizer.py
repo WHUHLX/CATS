@@ -73,16 +73,16 @@ class Optimizer():
                 net_parameters_id['attn.bias'].append(p)
 
         optim = torch.optim.SGD([
-                {'params': net_parameters_id['conv1-4.weight']      , 'lr': self.cfg.lr*1    , 'weight_decay': self.cfg.wd},
-                {'params': net_parameters_id['conv1-4.bias']        , 'lr': self.cfg.lr*2    , 'weight_decay': 0.},
-                {'params': net_parameters_id['conv5.weight']        , 'lr': self.cfg.lr*10  , 'weight_decay': self.cfg.wd},
-                {'params': net_parameters_id['conv5.bias']          , 'lr': self.cfg.lr*20  , 'weight_decay': 0.},
+                {'params': net_parameters_id['conv1-4.weight']      , 'lr': self.cfg.lr*0.01    , 'weight_decay': self.cfg.wd},
+                {'params': net_parameters_id['conv1-4.bias']        , 'lr': self.cfg.lr*0.02    , 'weight_decay': 0.},
+                {'params': net_parameters_id['conv5.weight']        , 'lr': self.cfg.lr*1.  , 'weight_decay': self.cfg.wd},
+                {'params': net_parameters_id['conv5.bias']          , 'lr': self.cfg.lr*2.  , 'weight_decay': 0.},
                 {'params': net_parameters_id['conv_down_1-5.weight'], 'lr': self.cfg.lr*0.1  , 'weight_decay': self.cfg.wd},
                 {'params': net_parameters_id['conv_down_1-5.bias']  , 'lr': self.cfg.lr*0.2  , 'weight_decay': 0.},
                 {'params': net_parameters_id['score_dsn_1-5.weight'], 'lr': self.cfg.lr*0.01 , 'weight_decay': self.cfg.wd},
                 {'params': net_parameters_id['score_dsn_1-5.bias']  , 'lr': self.cfg.lr*0.02 , 'weight_decay': 0.},
-                {'params': net_parameters_id['attn.weight']  , 'lr': self.cfg.lr*1, 'weight_decay': self.cfg.wd},
-                {'params': net_parameters_id['attn.bias']    , 'lr': self.cfg.lr*2, 'weight_decay': 0.},
+                {'params': net_parameters_id['attn.weight']  , 'lr': self.cfg.lr*1., 'weight_decay': self.cfg.wd},
+                {'params': net_parameters_id['attn.bias']    , 'lr': self.cfg.lr*2., 'weight_decay': 0.},
             ], lr=self.cfg.lr, momentum=self.cfg.momentum, weight_decay=self.cfg.wd)
 
         scheduler = lr_scheduler.StepLR(optim, step_size=self.cfg.stepsize, gamma=self.cfg.gamma)

@@ -26,7 +26,7 @@ class Config(object):
         self.lr = 1e-6
         self.momentum = 0.9
         self.wd = 2e-4
-        self.stepsize = 10
+        self.stepsize = 5
         self.gamma = 0.1
         self.max_epoch = 30
         self.itersize = 10

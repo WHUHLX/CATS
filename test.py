@@ -28,7 +28,7 @@ def test(cfg, model, test_loader, save_dir):
             torchvision.utils.save_image((1-results_all), join(save_dir, "%s.jpg" % filename))
 
         result = torch.squeeze(results[-1].detach()).cpu().numpy()
-        result = Image.fromarray(((1 - result) * 255).astype(np.uint8))
+        result = Image.fromarray((result * 255).astype(np.uint8))
         result.save(join(save_dir, "%s.png" % filename))
 
 
