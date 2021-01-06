@@ -48,7 +48,7 @@ def main():
     test_dataset = MyDataLoader(root=cfg.dataset, split="test")
 
     test_loader = DataLoader(test_dataset, batch_size=1,
-                        num_workers=1, drop_last=True,shuffle=False)
+                        num_workers=1,shuffle=False)
 
     if args.mode == "test":
         assert isfile(cfg.resume), "No checkpoint is found at '{}'".format(cfg.resume)
