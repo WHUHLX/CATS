@@ -85,20 +85,22 @@ class Network(nn.Module):
                 if not ly.bias is None: ly.bias.data.zero_()
 
         if self.cfg.pretrained:
-            assert isfile(self.cfg.pretrained), "No pretrained model found at '{}'".format(self.cfg.pretrained)
+            if not isfile(self.cfg.pretrained):
+                print("No pretrained VGG16 model found at '{}'".format(self.cfg.pretrained))
 
-            print("=> Initialize VGG16 backbone")
+            else:
+                print("=> Initialize VGG16 backbone")
 
-            state_dict = torch.load(self.cfg.pretrained, map_location=torch.device("cpu"))
+                state_dict = torch.load(self.cfg.pretrained, map_location=torch.device("cpu"))
 
-            self_state_dict = self.state_dict()
-            for k, v in self_state_dict.items():
-                if k in state_dict.keys():
-                    self_state_dict.update({k: state_dict[k]})
-                    print("*** Load {} ***".format(k))
+                self_state_dict = self.state_dict()
+                for k, v in self_state_dict.items():
+                    if k in state_dict.keys():
+                        self_state_dict.update({k: state_dict[k]})
+                        print("*** Load {} ***".format(k))
 
-            self.load_state_dict(self_state_dict)
-            print("=> Pretrained Loaded")
+                self.load_state_dict(self_state_dict)
+                print("=> Pretrained Loaded")
 
     def load_checkpoint(self):
         if isfile(self.cfg.resume):
