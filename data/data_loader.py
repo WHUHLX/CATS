@@ -70,8 +70,8 @@ class MyDataLoader(data.Dataset):
 
             label = label[np.newaxis, :, :]
             label[label == 0] = 0
-            label[np.logical_and(label>0, label<=100)] = 2
-            label[label > 100] = 1
+            label[np.logical_and(label>0, label<=73.5)] = 2
+            label[label > 73.5] = 1
 
             return img, label, basename(img_file).split('.')[0]
         else:
